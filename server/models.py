@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS todo_db;
+
+USE todo_db;
+
+CREATE TABLE IF NOT EXISTS todos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    completed BOOLEAN DEFAULT FALSE,
+    priority VARCHAR(20) DEFAULT 'Medium'
+);
+
