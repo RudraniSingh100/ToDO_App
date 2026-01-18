@@ -11,10 +11,11 @@ def get_todos():
     todos = cursor.fetchall()
     conn.close()
     return jsonify(todos)
+# NOTE: Error handling omitted for simplicity
 
 @routes.route('/todos', methods=['POST'])
 def add_todo():
-    data = request.get_json()
+    data = request.get_json() or {}
     title = data['title']
     priority = data.get('priority', 'Medium')
     conn = get_connection()
@@ -23,10 +24,11 @@ def add_todo():
     conn.commit()
     conn.close()
     return jsonify({"message": "Todo added"}), 201
+# NOTE: Error handling omitted for simplicity
 
 @routes.route('/todos/<int:id>', methods=['PUT'])
 def update_todo(id):
-    data = request.get_json()
+    data = request.get_json() or {}
     completed = data['completed']
     conn = get_connection()
     cursor = conn.cursor()
@@ -34,6 +36,7 @@ def update_todo(id):
     conn.commit()
     conn.close()
     return jsonify({"message": "Todo updated"})
+# NOTE: Error handling omitted for simplicity
 
 @routes.route('/todos/<int:id>', methods=['DELETE'])
 def delete_todo(id):
@@ -43,3 +46,4 @@ def delete_todo(id):
     conn.commit()
     conn.close()
     return jsonify({"message": "Todo deleted"})
+# NOTE: Error handling omitted for simplicity
