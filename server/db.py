@@ -7,3 +7,4 @@ def get_connection():
         password="261003",
         database="todo_db"
     )
+# TODO: Move credentials to environment variables for production
